@@ -1,6 +1,6 @@
 FROM centos:latest
 MAINTAINER WAQARAHMAD
-RUN yum install -y httpd \ zip \ unzip
+RUN apt-get install -y httpd \ zip \ unzip
 ADD https://www.free-css.com/assets/files/free-css-templates/download/page281/limelight.zip /var/www/httpd
 WORKDIR /var/www/httpd
 RUN unzip limelight.zip
