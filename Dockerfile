@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM ubuntu:latest
 MAINTAINER WAQARAHMAD
 RUN apt-get install -y httpd \ zip \ unzip
 ADD https://www.free-css.com/assets/files/free-css-templates/download/page281/limelight.zip /var/www/httpd
