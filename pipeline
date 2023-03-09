@@ -1,5 +1,5 @@
 pipeline{
-    agent Any
+    agent any
     environment{
         dockertag = getDockerTag()
     }
@@ -9,11 +9,7 @@ pipeline{
                 sh "docker build -t  ahadwaqar/development:${dockertag}"
             }
         }
-
-
     }
-
-
 }
 def getDockerTag(){
     def DockerTag = sh script: 'git rev-parse HEAD',returnstrout:true
