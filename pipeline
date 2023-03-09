@@ -9,6 +9,14 @@ pipeline{
                 sh "docker build -t  ahadwaqar/development:${dockertag} ."
             }
         }
+        stage("docker push"){
+            steps{
+                withCredentials([string(credentialsId: 'ahadwaqar', variable: 'dockerpush')]) {
+                sh "docker login -u ahadwaqar -p ${dockerpush}"
+                docker push  ahadwaqar/development:${dockertag}
+                }
+            }
+        }
     }
 } 
 def getDockerTag(){
