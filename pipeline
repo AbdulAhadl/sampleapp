@@ -18,6 +18,11 @@ pipeline{
                 
             }
         }
+        stage("Deploy_to_cluster"){
+            steps{
+                
+            }
+        }
     }
 } 
 def getDockerTag(){
