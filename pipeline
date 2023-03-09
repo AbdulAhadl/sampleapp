@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage("docker build"){
             steps{
-                sh " sudo docker build -t  ahadwaqar/development:${dockertag} ."
+                sh "docker build -t  ahadwaqar/development:${dockertag} ."
             }
         }
     }
