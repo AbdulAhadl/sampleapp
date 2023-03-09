@@ -20,7 +20,19 @@ pipeline{
         }
         stage("Deploy_to_cluster"){
             steps{
-                
+                sh "chmod +x nodeapp.sh"
+                sh "./nodeapp.sh ${dockertag}"
+                sshagent(['kubenest']) {
+                    sh "scp -o StrictHostKeyChecking=no *.yml root@172.31.39.20"
+                    script{
+                        try{
+                            sh "ssh root@172.32.39.20 kubectl apply -f ."
+                        }
+                        catch(error){
+                            sh "ssh root@172.32.39.20 kubectl apply -f ."
+                        }
+                    }
+                }
             }
         }
     }
