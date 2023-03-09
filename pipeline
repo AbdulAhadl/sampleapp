@@ -22,7 +22,7 @@ pipeline{
             steps{
                 sh "chmod +x nodeapp.sh"
                 sh "./nodeapp.sh ${dockertag}"
-                sshagent(['kubeset']){
+                sshagent(['demoproject']){
                     sh "scp -o StrictHostKeyChecking=no pod.yml node-app.yml root@kubernets:/home/ubuntu#" 
                     script{
                         try{
