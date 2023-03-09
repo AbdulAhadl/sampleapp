@@ -12,8 +12,8 @@ pipeline{
         stage("docker push"){
             steps{
                 withCredentials([string(credentialsId: 'ahadwaqar', variable: 'dockerpush')]) {
-                sh "docker login -u ahadwaqar -p ${dockerpush}"
-                sh "docker push  ahadwaqar/development:${dockertag}"
+                    sh "docker login -u ahadwaqar -p ${dockerpush}"
+                    sh "docker push  ahadwaqar/development:${dockertag}"
                 }
             }
         }
