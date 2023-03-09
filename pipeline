@@ -23,7 +23,7 @@ pipeline{
                 sh "chmod +x nodeapp.sh"
                 sh "./nodeapp.sh ${dockertag}"
                 sshagent(['kubenest']) {
-                    sh "scp -o StrictHostKeyChecking=no pod.yml node-app.yml root@172.31.39.20"
+                    sh "scp -o StrictHostKeyChecking=no pod.yml node-app.yml root@52.47.152.125:/" 
                     script{
                         try{
                             sh "ssh root@172.32.39.20 kubectl apply -f ."
