@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: test-myapp
+spec:
+  containers:
+  - name: test
+    image: ahadwaqar/development:TagVersion
+    ports:
+      - containerPort: 8080
