@@ -23,13 +23,13 @@ pipeline{
                 sh "chmod +x nodeapp.sh"
                 sh "./nodeapp.sh ${dockertag}"
                 sshagent(['Demogroup']){
-                    sh "scp -o StrictHostKeyChecking=no pod.yml node-app.yml ubuntu@ip-172-31-42-159:" 
+                    sh "scp -o StrictHostKeyChecking=no pod.yml node-app.yml ubuntu@172-31-42-159:" 
                     script{
                         try{
-                            sh "ssh ubuntu@ip-172-31-42-159 kubectl apply -f ."
+                            sh "ssh ubuntu@172-31-42-159 kubectl apply -f ."
                         }
                         catch(error){
-                            sh "ssh ubuntu@ip-172-31-42-159 kubectl apply -f ."
+                            sh "ssh ubuntu@172-31-42-159 kubectl apply -f ."
                         }
                     }
                 }
