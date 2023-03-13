@@ -1,4 +1,4 @@
-@library('ahadwaqar')
+@Library('ahadwaqar')
 
 pipeline{
     agent any
