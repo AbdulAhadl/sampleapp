@@ -6,7 +6,9 @@ pipeline(
         stage('sharedLibrabr'){
             steps{
                 echo"addition of two numbers are given"
-                cal.add(16,20)
+                script{
+                    cal.add(16,20)
+                }
             }
         }
     }
