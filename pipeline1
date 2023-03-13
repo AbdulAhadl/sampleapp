@@ -1,6 +1,6 @@
 @library('ahadwaqar')
 
-pipeline(
+pipeline{
     agent any
     stages{
         stage('sharedLibrabr'){
@@ -12,4 +12,4 @@ pipeline(
             }
         }
     }
-)
+}
