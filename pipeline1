@@ -1,0 +1,13 @@
+@library('ahadwaqar')
+
+pipeline(
+    agent any
+    stages{
+        stage('sharedLibrabr'){
+            steps{
+                echo"addition of two numbers are given"
+                cal.add(16,20)
+            }
+        }
+    }
+)
