@@ -1,13 +1,13 @@
 pipeline{
   agent any
   stages{
-      stage('aws-jenkins'){
+      stage("aws jenkins"){
           steps{
-              withCredentials([
+              withCredentials([[
               $class: 'AmazonWebServicesCredentialsBinding',
               credentialsId: 'aws-jenkins-credentials',
               accessKeyVariable: 'AWS_ACCESS_KEY_ID ',
-              secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']) {
+              secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
               sh "aws s3 list"
     
             }
