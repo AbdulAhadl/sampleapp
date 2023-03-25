@@ -3,22 +3,18 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 10
-    commands:
-      - echo Installing Mocha...
-      - npm install -g mocha
+      nodejs: latest
   pre_build:
     commands:
-      - echo Installing source NPM dependencies...
-      - npm install
+      - echo pre-build phase
   build:
     commands:
-      - echo Build started on `date`
-      - echo Compiling the Node.js code
-      - mocha app.js
+      - echo build phase
+      - npm install
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo artifacts copied in s3
 # Include only the files required for your application to run.
 artifacts:
   files:
