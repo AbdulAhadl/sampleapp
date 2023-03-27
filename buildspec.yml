@@ -1,23 +1,38 @@
 #the version of your buldspec file.
+#the version of your buldspec file.
 version: 0.2
+env:
+  parameter-store:
+    DOCKER_HUB_USERNAME: "ahadwaqar"
+    DOCKER_HUB_PASSWORD: "arn:aws:iam::270221109035:user/cequens-dev"
 phases:
   install:
     runtime-versions:
-      nodejs: latest
+      nodejs: 10
+    commands:
+      - echo Installing Mocha...
+      - npm install -g mocha
   pre_build:
     commands:
-      - echo pre-build phase
+      - echo login to the docker hub 
+      - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
+      - echo Installing source NPM dependencies...
+      - npm install
   build:
     commands:
-      - echo build phase
-      - npm install
+      - echo build and tag the docker image 
+      - docker build -t ${DOCKER_HUB_USERNAME}/development .
+      - docker tag $DOCKER_HUB_USERNAME/development $DOCKER_HUB_USERNAME/development:$ecs-cluster-image
+      - echo Build started on `date`
+      - echo Compiling the Node.js code
+      - npm run test
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo artifacts copied in s3
+      - docker push $DOCKER_HUB_USERNAME/development $DOCKER_HUB_USERNAME/development:$ecs-cluster-image
 # Include only the files required for your application to run.
 artifacts:
   files:
     - app.js
     - package.json
-   
+    - /**/*
