@@ -1,32 +1,29 @@
 version: 0.0
-os: linux
-files:
-- source: /
-  destination: /home/ec2-user/
-
-permissions:
-- object: /
-  pattern: "**"
-  owner: ec2-user
-  group: ec2-user
-
-hooks:
-ApplicationStop:
-   - location: bin/app-stop
-     timeout: 10
-     runas: ec2-user
-
-AfterInstall:
-   - location: bin/install-pkgs
-     timeout: 1200
-     runas: ec2-user
-
-ApplicationStart:
-   - location: bin/app-start
-     timeout: 60
-     runas: ec2-user
-
-ValidateService:
-   - location: bin/app-validate
-     timeout: 10
-     runas: ec2-user
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:eu-west-3:270221109035:task-definition/cequens-task:3"
+        #LoadBalancerInfo:
+         # ContainerName: "SampleApplicationName"
+          #ContainerPort: 80
+# Optional properties
+        PlatformVersion: "LATEST"
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+            Subnets: ["subnet-1234abcd","subnet-5678abcd"]
+            SecurityGroups: ["sg-12345678"]
+            AssignPublicIp: "ENABLED"
+        CapacityProviderStrategy:
+          - Base: 1
+            CapacityProvider: "FARGATE_SPOT"
+            Weight: 2
+          - Base: 0
+            CapacityProvider: "FARGATE"
+            Weight: 1
+Hooks:
+  - BeforeInstall: "LambdaFunctionToValidateBeforeInstall"
+  - AfterInstall: "LambdaFunctionToValidateAfterInstall"
+  - AfterAllowTestTraffic: "LambdaFunctionToValidateAfterTestTrafficStarts"
+  - BeforeAllowTraffic: "LambdaFunctionToValidateBeforeAllowingProductionTraffic"
+  - AfterAllowTraffic: "LambdaFunctionToValidateAfterAllowingProductionTraffic"
