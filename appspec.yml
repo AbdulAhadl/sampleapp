@@ -11,8 +11,8 @@ Resources:
         PlatformVersion: "LATEST"
         NetworkConfiguration:
           AwsvpcConfiguration:
-            Subnets: ["subnet-1234abcd","subnet-5678abcd"]
-            SecurityGroups: ["sg-12345678"]
+            Subnets: ["subnet-0742141b8185d59c4","subnet-005a3e39bb9b70282"]
+            SecurityGroups: ["sg-05073e5015bcc4844"]
             AssignPublicIp: "ENABLED"
         CapacityProviderStrategy:
           - Base: 1
