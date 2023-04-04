@@ -1,6 +1,6 @@
 [
   {
-    "name": "sample-app",
-    "imageUri": "AbdulAhadl/development AbdulAhadl/development:$ecs-cluster-image"
+    "name": "ecsapp",
+    "imageUri": "ahadwaqar/development ahadwaqar/development:$ecs-cluster-image"
   }
 ]
