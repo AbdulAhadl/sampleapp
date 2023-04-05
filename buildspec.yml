@@ -30,7 +30,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push $DOCKER_HUB_USERNAME/development $DOCKER_HUB_USERNAME/development:$ecs-cluster-image
+      - docker push $DOCKER_HUB_USERNAME/development:$ecs-cluster-image
 # Include only the files required for your application to run.
 artifacts:
   files:
