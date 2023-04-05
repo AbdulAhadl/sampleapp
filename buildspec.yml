@@ -32,8 +32,8 @@ phases:
       - echo Build completed on `date`
       - docker push $DOCKER_HUB_USERNAME/development:$ecs-cluster-image
 # Include only the files required for your application to run.
-artifacts:
-  files:
+#artifacts:
+ # files:
 #     - app.js
 #     - package.json
-    - /**/*
+  #  - /**/*
