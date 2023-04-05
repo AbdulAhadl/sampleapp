@@ -2,9 +2,10 @@
 #the version of your buldspec file.
 version: 0.2
 env:
+  variables:
+         DOCKER_HUB_USERNAME: "ahadwaqar"
   parameter-store:
-    DOCKER_HUB_USERNAME: "ahadwaqar"
-    DOCKER_HUB_PASSWORD: "arn:aws:iam::270221109035:user/cequens-dev"
+    DOCKER_HUB_PASSWORD: "DOCKER_HUB_PASSWORD"
 phases:
   install:
     runtime-versions:
