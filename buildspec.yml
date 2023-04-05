@@ -22,7 +22,7 @@ phases:
   build:
     commands:
       - echo build and tag the docker image 
-      - docker build --no-cache -t ${DOCKER_HUB_USERNAME}:latest .
+      - docker build -t ${DOCKER_HUB_USERNAME}:latest .
       - docker tag ${DOCKER_HUB_USERNAME}:latest $DOCKER_HUB_USERNAME/$development:$new_tag
       - echo Build started on `date`
       - echo Compiling the Node.js code
