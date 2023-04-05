@@ -22,15 +22,15 @@ phases:
   build:
     commands:
       - echo build and tag the docker image 
-      - docker build -t ${DOCKER_HUB_USERNAME}/development .
-      - docker tag $DOCKER_HUB_USERNAME/development $DOCKER_HUB_USERNAME/development:$ecs-cluster-image
+      - docker build -t ecs-image:latest .
+      - docker tag ecs-image:v1 $DOCKER_HUB_USERNAME/development:v1
       - echo Build started on `date`
       - echo Compiling the Node.js code
       - npm run test
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push $DOCKER_HUB_USERNAME/development:$ecs-cluster-image
+      - docker push $DOCKER_HUB_USERNAME/development:v1
 # Include only the files required for your application to run.
 #artifacts:
  # files:
